@@ -52,15 +52,9 @@
           "name": "HA-combinedinterface"
         }
       ],
-      "deviceTypeRefs": [
-        57
-      ],
-      "deviceVersions": [
-        1
-      ],
-      "deviceIdentifiers": [
-        7
-      ],
+      "deviceTypeRefs": [57],
+      "deviceVersions": [1],
+      "deviceIdentifiers": [7],
       "deviceTypeName": "HA-combinedinterface",
       "deviceTypeCode": 7,
       "deviceTypeProfileId": 260,

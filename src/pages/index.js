@@ -1,24 +1,64 @@
-import * as React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import ProTip from '../components/ProTip';
-import Link from '../components/Link';
-import Copyright from '../components/Copyright';
+import React from "react";
+import { graphql, Link } from "gatsby";
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
+import theme from "../theme";
 
-export default function Index() {
+import Box from "@mui/material/Box";
+import TopBar from "../components/TopBar";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import SettingsRemoteTwoToneIcon from "@mui/icons-material/SettingsRemoteTwoTone";
+import { StrictMode } from "react";
+
+const DevicesList = ({ devices_files }) => {
+  console.log("Devices files: ", devices_files);
+
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Material UI Gatsby example
-        </Typography>
-        <Link to="/about" color="secondary">
-          Go to the about page
-        </Link>
-        <ProTip />
-        <Copyright />
-      </Box>
-    </Container>
+    <List>
+      {devices_files.map((device, index) => {
+        const device_name = device.base.replace(".json", "");
+        return (
+          <ListItem key={index}>
+            <ListItemIcon>
+              <SettingsRemoteTwoToneIcon />
+            </ListItemIcon>
+            <ListItemButton component={Link} to={`/device/${device_name}`}>
+              <ListItemText primary={device_name} />
+            </ListItemButton>
+          </ListItem>
+        );
+      })}
+    </List>
   );
-}
+};
+
+const IndexPage = ({ data }) => {
+  const devices_files = data.allFile.nodes;
+  const title = "Zcl documentation devices list";
+
+  return (
+    <ThemeProvider theme={theme}>
+      <StrictMode>
+        <Box>
+          <TopBar title={title} />
+          <DevicesList devices_files={devices_files} />
+        </Box>
+      </StrictMode>
+    </ThemeProvider>
+  );
+};
+
+export const query = graphql`
+  query {
+    allFile {
+      nodes {
+        base
+      }
+    }
+  }
+`;
+
+export default IndexPage;
