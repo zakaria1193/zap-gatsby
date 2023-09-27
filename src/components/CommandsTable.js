@@ -103,7 +103,7 @@ const CommandsTable = ({ commands, cluster_code, cluster_side }) => {
               <TableCell> - </TableCell>
               <TableCell>Server</TableCell>
               <TableCell>Name</TableCell>
-              <TableCell>Code</TableCell>
+              <TableCell>ID</TableCell>
               <TableCell>Description</TableCell>
             </TableRow>
           </TableHead>
