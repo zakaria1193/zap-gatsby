@@ -21,7 +21,7 @@ const ComponentsPalette = {
   TopBar: RawPalette["Tomato"],
 
   // ClusterAccordion
-  AccordionHeader: RawPalette["TomatoLight"],
+  AccordionHeader: "#FFDEE7",
   AccordionBody: RawPalette["Ghost white"],
   ClusterClient: RawPalette["Mustard"],
   ClusterServer: RawPalette["Moonstone"],
