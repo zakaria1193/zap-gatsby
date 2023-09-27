@@ -21,6 +21,10 @@ const EndpointMetadata = ({ endpoint_metadata }) => {
             <TableCell>Device Type</TableCell>
             <TableCell>{endpoint_metadata.name}</TableCell>
           </TableRow>
+          <TableRow>
+            <TableCell>Profile ID</TableCell>
+            <TableCell>{endpoint_metadata.profileId}</TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>
