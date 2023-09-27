@@ -8,7 +8,6 @@ import EndpointMetadata from "../components/EndpointMetadata.js";
 
 // Look for endpoint.id that is at same index in endpointTypes array
 function getEndpointId(deviceZapDescriptor, endpointIndex) {
-  const endpoint = deviceZapDescriptor.endpointTypes[endpointIndex];
   return deviceZapDescriptor.endpoints[endpointIndex].endpointId;
 }
 
