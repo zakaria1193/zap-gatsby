@@ -72,7 +72,7 @@ const CommandRow = ({ command, index, cluster_code, cluster_side }) => {
       <TableCell>{direction_cell}</TableCell>
       <TableCell>{server_cell}</TableCell>
       <TableCell>{command.name}</TableCell>
-      <TableCell>{command.code}</TableCell>
+      <TableCell>0x{command.code.toString(16).toUpperCase()}</TableCell>
       <TableCell>{command_desc}</TableCell>
     </TableRow>
   );
