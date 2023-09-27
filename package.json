@@ -1,0 +1,33 @@
+{
+  "name": "material-gatsby",
+  "version": "5.0.0",
+  "private": true,
+  "browserslist": [
+    ">0.25%",
+    "not dead"
+  ],
+  "dependencies": {
+    "@emotion/react": "latest",
+    "@emotion/server": "latest",
+    "@emotion/styled": "latest",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/material": "latest",
+    "gatsby": "^5.12.4",
+    "gatsby-plugin-react-helmet": "latest",
+    "gatsby-source-filesystem": "^5.12.0",
+    "gatsby-source-sqlite": "^1.0.0",
+    "gatsby-transformer-json": "^5.12.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-helmet": "latest"
+  },
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.0.0"
+  }
+}
