@@ -72,7 +72,7 @@ const GetCommand = (cluster_code, command_code) => {
 const GetClusterDescription = (cluster_code) => {
   const cluster = GetCluster(cluster_code);
   if (!cluster) {
-    return "## Description not found";
+    return "-";
   }
   return cluster.description;
 };
@@ -81,9 +81,11 @@ const GetClusterDescription = (cluster_code) => {
 const GetCommandDescription = (cluster_code, command_code) => {
   const command = GetCommand(cluster_code, command_code);
   if (!command) {
-    return "## Description not found";
+    return "-";
   }
   return command.description;
 };
+
+// Get attribute description
 
 export { GetCluster, GetClusterDescription, GetCommand, GetCommandDescription };
