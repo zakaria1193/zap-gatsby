@@ -15,7 +15,7 @@ Refer to the live sample built from the master branch: [Rendered Documentation](
 
 ## Quick Start
 
-Refer to [deploy.yml](.github/workflows/deploy.yml) for a complete example.
+Refer to [CI Build](#CI-Build) for a complete running example.
 
 1. Provide
 
@@ -31,6 +31,20 @@ gatsby build --prefix-paths --out-dir=./wherever-you-want
 ```
 
 3. Serve it (static website)
+
+## CI Build
+
+### Github Actions
+
+Refer to [deploy.yml](.github/workflows/gatsby.yml) for a complete running example.
+This job will build the project and deploy it to Github Pages. [Rendered Documentation](https://zakaria1193.github.io/zap-gatsby/)
+
+### Gitlab CI
+
+// IN PROGRESS
+
+Refer to [.gitlab-ci.yml](.gitlab-ci.yml) for a complete running example.
+This job will build the project and deploy it to Gitlab Pages. [Rendered Documentation](https://zakaria1193.gitlab.io/zap-gatsby/)
 
 ## Feeding ZAP Documentation Data
 
