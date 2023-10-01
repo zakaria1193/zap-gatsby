@@ -1,0 +1,8 @@
+include:
+  - template: Auto-DevOps.gitlab-ci.yml
+
+variables:
+  ZAP_SQLITE_FILE: data/zap.sqlite
+  ZAP_JSON_DESCRIPTORS_FOLDER: data/descriptors
+  # Disable test
+  TEST_DISABLED: ""
