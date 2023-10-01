@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import CollapseIcon from "@mui/icons-material/ExpandMore";
+import { navigate } from "gatsby";
 
 import { ComponentsPalette } from "../Colors";
 
@@ -20,10 +21,11 @@ export default function TopBar({ title }) {
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-            href="/"
+            onClick={() => {
+              navigate("/");
+            }}
           >
             <HomeIcon />
           </IconButton>
