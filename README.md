@@ -75,22 +75,10 @@ env var: `ZAP_JSON_DESCRIPTORS_FOLDER`
     └── ...
 ```
 
-## Performing an Out-of-Tree Build
 
-By default, the ZAP Documentation Web Renderer builds the website into the `public` directory within your project. To perform an out-of-tree build, follow these steps:
-
-Use the `--out-dir` flag to specify the output directory for the static build during the build process. For example, to build the website into a directory called `build` in your project's root directory:
-
-```bash
-gatsby build --prefix-paths --out-dir=./build
-```
-
-**--prefix-paths**: Ensures that paths in your website are relative, which is important for out-of-tree builds.
-
-After the build process is complete, you will find your static website files in the specified out-of-tree directory (e.g., `./build`). These files can be deployed to a web server or hosting service.
-
-## Stack
+## Implementation details
 
 This web application is built on the Gatsby framework, a powerful and versatile tool for creating static websites. Data for rendering the documentation is sourced from the specified data files, including the `zap.sqlite` database and JSON descriptor files, using standard Gatsby GraphQL data connectors. The combination of Gatsby and these data sources ensures a seamless and efficient documentation rendering process.
 
 I've retained the explanations for both `zap.sqlite` and JSON descriptors in this revised README. Please feel free to further customize and expand the README as needed to provide additional context and instructions for users.
+
