@@ -1,3 +1,12 @@
+// Validate required environment variables
+const requiredEnvVariables = ['ZAP_JSON_DESCRIPTORS_FOLDER', 'ZAP_SQLITE_FILE'];
+
+requiredEnvVariables.forEach((envVar) => {
+  if (!process.env[envVar]) {
+    throw new Error(`Missing required environment variable: ${envVar}`);
+  }
+});
+
 module.exports = {
   pathPrefix: "/zap-gatsby",
   plugins: [
