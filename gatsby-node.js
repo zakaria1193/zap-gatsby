@@ -16,14 +16,6 @@ exports.createPages = async ({ graphql, actions }) => {
             }
             endpointTypes {
               name
-              id
-              deviceTypes {
-                code
-                id
-                label
-                name
-                profileId
-              }
               clusters {
                 attributes {
                   code
@@ -53,19 +45,9 @@ exports.createPages = async ({ graphql, actions }) => {
                 name
                 side
               }
-              deviceIdentifiers
               deviceTypeCode
               deviceTypeProfileId
               deviceTypeName
-              deviceTypeRefs
-              deviceTypeRef {
-                code
-                id
-                label
-                name
-                profileId
-              }
-              deviceVersions
             }
           }
         }
