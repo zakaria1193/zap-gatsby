@@ -8,7 +8,7 @@ requiredEnvVariables.forEach((envVar) => {
 });
 
 module.exports = {
-  pathPrefix: "/zap-gatsby",
+  pathPrefix: process.env.PATH_PREFIX || "/",
   plugins: [
     `gatsby-transformer-json`,
     {
