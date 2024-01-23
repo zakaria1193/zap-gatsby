@@ -1,8 +1,25 @@
-include:
-  - template: Auto-DevOps.gitlab-ci.yml
+image: node:latest
 
 variables:
   ZAP_SQLITE_FILE: data/zap.sqlite
   ZAP_JSON_DESCRIPTORS_FOLDER: data/descriptors
-  # Disable test
-  TEST_DISABLED: ""
+
+# This folder is cached between builds
+# https://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  paths:
+    - node_modules/
+    # Enables git-lab CI caching. Both .cache and public must be cached, otherwise builds will fail.
+    - .cache/
+    - public/
+
+pages:
+  stage: deploy
+  script:
+    - npm install
+    - ./node_modules/.bin/gatsby build --prefix-paths
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
