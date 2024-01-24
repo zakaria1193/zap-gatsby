@@ -10,8 +10,12 @@ If you don't know ZAP (ZCL Advanced Platform), better start here: [ZAP](https://
 
 ## What does it look like ?
 
-Refer to the live sample built from the master branch: [Rendered Documentation](https://zakaria1193.github.io/zap-gatsby/)
-[![Deploy Github Pages](https://github.com/zakaria1193/zap-gatsby/actions/workflows/gatsby.yml/badge.svg)](https://github.com/zakaria1193/zap-gatsby/actions/workflows/gatsby.yml)
+Refer to the live sample built from the master branch: 
+
+[Rendered Documentation](https://zakaria1193.github.io/zap-gatsby/) from [Github pages](#ci-build)
+
+
+[![preview](./website-preview.png)](https://zakaria1193.github.io/zap-gatsby/)
 
 ## Quick Start
 
@@ -21,30 +25,43 @@ Refer to [CI Build](#CI-Build) for a complete running example.
 
 - `zap.sqlite` file using env var `ZAP_SQLITE_PATH`
 - JSON descriptors folder using env var `ZAP_JSON_DESCRIPTORS_FOLDER`
+- Specify the `PATH_PREFIX` env var, if you intend to deploy to a subdirectory, such as `https://zakaria1193.github.io/zap-gatsby/`. This is optional, with the default path prefix being `/`.
 
-See [Feeding ZAP Documentation Data](#Feeding-ZAP-Documentation-Data) for more details
+See [Feeding ZAP Documentation Data](#feeding-zap-documentation-data) for more details
 
-2. buid the project
+2. Debug
+
+```bash
+gatsby develop
+```
+
+3. Build & serve
 
 ```bash
 gatsby build --prefix-paths --out-dir=./wherever-you-want
 ```
 
-3. Serve it (static website)
+To serve use any static server (such as github pages), or directly from gatsby:
 
-## CI Build
+```bash
+gatsby serve --prefix-paths --port 9000
+```
+
+## CI Build & Serve
 
 ### Github Actions
 
 Refer to [deploy.yml](.github/workflows/gatsby.yml) for a complete running example.
-This job will build the project and deploy it to Github Pages. [Rendered Documentation](https://zakaria1193.github.io/zap-gatsby/)
+This job will build the project and deploy it to Github Pages. [Rendered Documentation on Github](https://zakaria1193.github.io/zap-gatsby/)
+
+Github pipeline status : [![Deploy Github Pages](https://github.com/zakaria1193/zap-gatsby/actions/workflows/gatsby.yml/badge.svg)](https://github.com/zakaria1193/zap-gatsby/actions/workflows/gatsby.yml)
 
 ### Gitlab CI
 
-// IN PROGRESS
-
 Refer to [.gitlab-ci.yml](.gitlab-ci.yml) for a complete running example.
-This job will build the project and deploy it to Gitlab Pages. [Rendered Documentation](https://zakaria1193.gitlab.io/zap-gatsby/)
+This job will build the project and deploy it to Gitlab Pages. [Rendered Documentation on Gitlab](https://zakaria1193.gitlab.io/zap-gatsby/)
+
+Gitlab pipeline status : [![Deploy Gitlab Pages](https://gitlab.com/zakaria1193/zap-gatsby/badges/master/pipeline.svg)](https://gitlab.com/zakaria1193/zap-gatsby/-/pipelines)
 
 ## Feeding ZAP Documentation Data
 
