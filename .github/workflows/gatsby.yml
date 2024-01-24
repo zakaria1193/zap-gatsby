@@ -8,6 +8,7 @@ name: Deploy to Github Pages
 env:
   ZAP_SQLITE_FILE: data/zap.sqlite
   ZAP_JSON_DESCRIPTORS_FOLDER: data/descriptors
+  PATH_PREFIX: "/zap-gatsby"
 
 on:
   # Runs on pushes targeting the default branch
