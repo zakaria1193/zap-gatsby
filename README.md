@@ -10,16 +10,15 @@ If you don't know ZAP (ZCL Advanced Platform), better start here: [ZAP](https://
 
 ## What does it look like ?
 
-Refer to the live sample built from the master branch: 
+Refer to the live sample built from the master branch:
 
-[Rendered Documentation](https://zakaria1193.github.io/zap-gatsby/) from [Github pages](#ci-build)
-
+[Rendered Documentation](https://zakaria1193.github.io/zap-gatsby/) from [CI build](#ci-build-and-serve)
 
 [![preview](./website-preview.png)](https://zakaria1193.github.io/zap-gatsby/)
 
 ## Quick Start
 
-Refer to [CI Build](#CI-Build) for a complete running example.
+Refer to [CI Build](#ci-build-and-serve) for a complete running example.
 
 1. Provide
 
@@ -27,7 +26,7 @@ Refer to [CI Build](#CI-Build) for a complete running example.
 - JSON descriptors folder using env var `ZAP_JSON_DESCRIPTORS_FOLDER`
 - Specify the `PATH_PREFIX` env var, if you intend to deploy to a subdirectory, such as `https://zakaria1193.github.io/zap-gatsby/`. This is optional, with the default path prefix being `/`.
 
-See [Feeding ZAP Documentation Data](#feeding-zap-documentation-data) for more details
+See [Feeding ZAP Documentation Data](#feeding-zap-documentation-data) for more details.
 
 2. Debug
 
@@ -35,7 +34,7 @@ See [Feeding ZAP Documentation Data](#feeding-zap-documentation-data) for more d
 gatsby develop
 ```
 
-3. Build & serve
+3. Build and Serve
 
 ```bash
 gatsby build --prefix-paths --out-dir=./wherever-you-want
@@ -47,7 +46,7 @@ To serve use any static server (such as github pages), or directly from gatsby:
 gatsby serve --prefix-paths --port 9000
 ```
 
-## CI Build & Serve
+## CI Build and Serve
 
 ### Github Actions
 
