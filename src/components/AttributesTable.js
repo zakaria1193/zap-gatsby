@@ -31,7 +31,7 @@ const AttributeTable = ({ attributes }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {attributes.map((attribute, index) => (
+            {attributes && attributes.map((attribute, index) => (
               <TableRow key={index}>
                 <TableCell>{capitalCase(attribute.name)}</TableCell>
                 <TableCell>

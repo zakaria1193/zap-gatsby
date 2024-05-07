@@ -108,7 +108,7 @@ const CommandsTable = ({ commands, cluster_code, cluster_side }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {commands.map((command, index) => (
+            {commands && commands.map((command, index) => (
               <CommandRow
                 key={index}
                 command={command}
