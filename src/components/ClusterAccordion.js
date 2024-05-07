@@ -14,36 +14,31 @@ import { capitalCase } from "capital-case";
 
 import AttributesTable from "./AttributesTable";
 import CommandsTable from "./CommandsTable";
-import { GetClusterDescription } from "./ZapDbReader/GetCluster";
-import {
-  find_clusters_with_same_name,
-  concatenate_cluster_commands,
-} from "./ClusterUtils";
+import { find_cluster_couples } from "./ClusterUtils";
 import { ComponentsPalette } from "../Colors";
 
-const ClusterSideDetails = ({ cluster, merged_cluster_commands }) => {
-  const bg_color =
-    cluster.side === "client"
-      ? ComponentsPalette.ClusterClient
-      : ComponentsPalette.ClusterServer;
+const get_bg_color = (cluster_side) => {
+  return cluster_side === "client"
+    ? ComponentsPalette.ClusterClient
+    : ComponentsPalette.ClusterServer;
+}
 
-  if (!cluster) {
-    return (
-      <Paper
-        elevation={1}
-        square={false}
-        sx={{
-          backgroundColor: bg_color,
-        }}
-      >
-        <Box padding={2}>
-          <Typography variant="h4" gutterBottom>
-            No {capitalCase(cluster.side)} side
-          </Typography>
-        </Box>
-      </Paper>
-    );
+const ClusterSide = ({ cluster_couple, cluster_side }) => {
+  const cluster = cluster_couple.side(cluster_side);
+
+  if (cluster) {
+    return <ClusterSideDetails
+      cluster={cluster}
+      merged_cluster_commands={cluster_couple.merged_commands}
+    />
   }
+
+  return <AbsentClusterSideDetails cluster_side={cluster_side} />
+}
+
+const ClusterSideDetails = ({ cluster, merged_cluster_commands }) => {
+  const bg_color = get_bg_color(cluster.side);
+
   return (
     <Paper
       elevation={1}
@@ -74,6 +69,24 @@ const ClusterSideDetails = ({ cluster, merged_cluster_commands }) => {
   );
 };
 
+const AbsentClusterSideDetails = ({ cluster_side }) => {
+  return (
+    <Paper
+      elevation={1}
+      square={false}
+      sx={{
+        backgroundColor: get_bg_color(cluster_side),
+      }}
+    >
+      <Box padding={2}>
+        <Typography variant="h4" gutterBottom>
+          No {capitalCase(cluster_side)} side
+        </Typography>
+      </Box>
+    </Paper>
+  );
+};
+
 const ClusterMetadata = ({ cluster_code, cluster_description }) => {
   return (
     <Box mb={2}>
@@ -86,28 +99,12 @@ const ClusterMetadata = ({ cluster_code, cluster_description }) => {
   );
 };
 
-const ClusterDetails = ({ clusters_with_same_name }) => {
-  const cluster_code =
-    "0x" + clusters_with_same_name[0].code.toString(16).toUpperCase();
-
-  const cluster_description = GetClusterDescription(parseInt(cluster_code, 16));
-  const merged_cluster_commands = concatenate_cluster_commands(
-    clusters_with_same_name
-  );
-
-  const client_side_cluster = clusters_with_same_name.find(
-    (cluster) => cluster.side === "client"
-  );
-
-  const server_side_cluster = clusters_with_same_name.find(
-    (cluster) => cluster.side === "server"
-  );
-
+const ClusterCoupleDetails = ({ cluster_couple }) => {
   return (
     <Box sx={{ width: "90%" }} m="auto">
       <ClusterMetadata
-        cluster_code={cluster_code}
-        cluster_description={cluster_description}
+        cluster_code={cluster_couple.code}
+        cluster_description={cluster_couple.description}
       />
       <Grid
         container
@@ -116,16 +113,10 @@ const ClusterDetails = ({ clusters_with_same_name }) => {
         alignItems="stretch"
       >
         <Grid item xs={12} xl={6}>
-          <ClusterSideDetails
-            cluster={client_side_cluster}
-            merged_cluster_commands={merged_cluster_commands}
-          />
+          <ClusterSide cluster_couple={cluster_couple} cluster_side="client" />
         </Grid>
         <Grid item xs={12} xl={6}>
-          <ClusterSideDetails
-            cluster={server_side_cluster}
-            merged_cluster_commands={merged_cluster_commands}
-          />
+          <ClusterSide cluster_couple={cluster_couple} cluster_side="server" />
         </Grid>
       </Grid>
     </Box>
@@ -134,38 +125,31 @@ const ClusterDetails = ({ clusters_with_same_name }) => {
 
 // Render a single cluster
 // Takes in a list of clusters with same name and code but different side
-const ClusterItem = ({ clusters_with_same_name }) => {
-  // Assert all clusters have same name
-  const cluster_name = clusters_with_same_name[0].name;
-
-  if (
-    !clusters_with_same_name.every((cluster) => cluster.name === cluster_name)
-  ) {
-    throw new Error("All clusters in same accordion item must have same name");
-  }
-
+const ClusterCouple = ({ cluster_couple }) => {
   return (
     <Accordion>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         sx={{ bgcolor: ComponentsPalette["AccordionHeader"] }}
       >
-        <Typography variant="h3">{cluster_name} cluster</Typography>
+        <Typography variant="h3">{cluster_couple.name} cluster</Typography>
       </AccordionSummary>
       <AccordionDetails sx={{ bgcolor: ComponentsPalette["AccordionBody"] }}>
-        <ClusterDetails clusters_with_same_name={clusters_with_same_name} />
+        <ClusterCoupleDetails cluster_couple={cluster_couple} />
       </AccordionDetails>
     </Accordion>
   );
 };
 const ClustersAccordion = ({ all_clusters }) => {
   // Make sure all clusters have same name and code but different side
-  const clusters_lists = find_clusters_with_same_name(all_clusters);
+  const cluster_couples = find_cluster_couples(all_clusters);
+
   return (
     <div>
-      {clusters_lists.map((cluster_list, index) => (
-        <ClusterItem key={index} clusters_with_same_name={cluster_list} />
-      ))}
+      {
+        cluster_couples.map((cluster_couple, index) =>
+          <ClusterCouple key={index} cluster_couple={cluster_couple} />)
+      }
     </div>
   );
 };
